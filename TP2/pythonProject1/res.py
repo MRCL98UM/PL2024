@@ -14,10 +14,20 @@ def bold(texto):
     regex = r"\*\*(.*?)\*\*"
     modified_text = re.sub(regex, convert_to_bold, texto)
     return modified_text
+
+def italic(texto):
+    return f"<i>{texto}<"
+def lista(texto):
+    return texto.split()
+def link(texto):
+    return f"<a href='{texto}'>"
+def imagem(texto):
+    return f"<img src='{texto}'"
 def main ():
     texto = "Este é um **exemplo** # Exemplo"
     print(cabecalho(texto))
     print(bold(texto))
+
 
 if __name__ == "__main__":
     main()

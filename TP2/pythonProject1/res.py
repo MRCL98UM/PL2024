@@ -36,10 +36,12 @@ def main ():
    texto= ("# Título"
            " **negrito**"
            " *itálico*"
-           " * item 1"
-           " * item 2"
-           " [link](https://www.google.com) "
-           "![imagem](https://www.google.com)")
+           "Isso é um exemplo de texto com elementos diferentes:\n"
+           "1. Item 1\n"
+           "2. Item 2\n"
+           "3. Item 3\n"
+           "Links são importantes, [veja aqui](https://www.example.com).\n"
+           "E também temos uma imagem: ![imagem](https://www.example.com/image.jpg)")
 
    texto = cabecalho(texto)
    texto = bold(texto)

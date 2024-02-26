@@ -1,9 +1,8 @@
 import re
 def cabecalho(texto):
-    regex = r"#"
-    # Replace '#' with '<h1>'
-    modified_string = re.sub(regex, "<h1>", texto)
-    modified_string = modified_string + "</h1>"
+    regex = r"# (.*?)\n"
+    modified_string = re.sub(regex, r"<h1>\1</h1>", texto)
+
     print(modified_string)
     return modified_string
 def convert_to_bold(match):
@@ -16,17 +15,39 @@ def bold(texto):
     return modified_text
 
 def italic(texto):
-    return f"<i>{texto}<"
+    regex = r"\*(.*?)\*"
+    modified_text = re.sub(regex, r"<i>\1</i>", texto)
+    return modified_text
 def lista(texto):
-    return texto.split()
+    regex = r"\* (.*?)\n"
+    modified_text = re.sub(regex, r"<li>\1</li>", texto)
+    return modified_text
+
 def link(texto):
-    return f"<a href='{texto}'>"
+    regex = r"\[(.*?)\]\((.*?)\)"
+    modified_text = re.sub(regex, r"<a href='\2'>\1</a>", texto)
+    return modified_text
+
 def imagem(texto):
-    return f"<img src='{texto}'"
+    regex = r"!\[(.*?)\]\((.*?)\)"
+    modified_text = re.sub(regex, r"<img src='\2' alt='\1'>", texto)
+    return modified_text
 def main ():
-    texto = "Este é um **exemplo** # Exemplo"
-    print(cabecalho(texto))
-    print(bold(texto))
+   texto= ("# Título"
+           " **negrito**"
+           " *itálico*"
+           " * item 1"
+           " * item 2"
+           " [link](https://www.google.com) "
+           "![imagem](https://www.google.com)")
+
+   texto = cabecalho(texto)
+   texto = bold(texto)
+   texto = italic(texto)
+   texto = lista(texto)
+   texto = link(texto)
+   texto = imagem(texto)
+   print(texto)
 
 
 if __name__ == "__main__":
